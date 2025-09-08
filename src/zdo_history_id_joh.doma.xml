@@ -3,13 +3,12 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <DD01V>
-    <DOMNAME>ZDO_WORK_ORDER_ID_JOH</DOMNAME>
+    <DOMNAME>ZDO_HISTORY_ID_JOH</DOMNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
     <DATATYPE>NUMC</DATATYPE>
-    <LENG>000010</LENG>
-    <OUTPUTLEN>000010</OUTPUTLEN>
-    <CONVEXIT>ALPHA</CONVEXIT>
-    <DDTEXT>Unique identifier for the work order</DDTEXT>
+    <LENG>000012</LENG>
+    <OUTPUTLEN>000012</OUTPUTLEN>
+    <DDTEXT>Unique identifier for the history entry</DDTEXT>
     <DOMMASTER>E</DOMMASTER>
    </DD01V>
   </asx:values>

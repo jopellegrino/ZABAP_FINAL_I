@@ -8,9 +8,33 @@
     <DATATYPE>CHAR</DATATYPE>
     <LENG>000001</LENG>
     <OUTPUTLEN>000001</OUTPUTLEN>
+    <VALEXI>X</VALEXI>
     <DDTEXT>Priority of the work order</DDTEXT>
     <DOMMASTER>E</DOMMASTER>
    </DD01V>
+   <DD07V_TAB>
+    <DD07V>
+     <DOMNAME>ZDO_PRIORITY_JOH</DOMNAME>
+     <VALPOS>0001</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>H</DOMVALUE_L>
+     <DDTEXT>High (Prioridad alta)</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZDO_PRIORITY_JOH</DOMNAME>
+     <VALPOS>0002</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>M</DOMVALUE_L>
+     <DDTEXT>Medium (Prioridad media)</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZDO_PRIORITY_JOH</DOMNAME>
+     <VALPOS>0003</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>L</DOMVALUE_L>
+     <DDTEXT>Low (Prioridad baja)</DDTEXT>
+    </DD07V>
+   </DD07V_TAB>
   </asx:values>
  </asx:abap>
 </abapGit>
