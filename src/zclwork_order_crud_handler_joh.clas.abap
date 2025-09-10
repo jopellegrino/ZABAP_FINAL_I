@@ -12,14 +12,17 @@ CLASS zclwork_order_crud_handler_joh DEFINITION
                                   iv_priority_crud      TYPE zde_priority_joh
                                   iv_description        TYPE zde_description_joh
                         RETURNING VALUE(rv_valid_crud)  TYPE abap_bool,
-      validate_update_order IMPORTING iv_work_order_id_crud TYPE zde_work_order_id_joh
-                                      iv_status_crud        TYPE zde_status_joh
-                            RETURNING VALUE(rv_valid)       TYPE abap_bool.
-
-
+      update_work_order IMPORTING iv_work_order_id_crud TYPE zde_work_order_id_joh
+                                  iv_status_crud        TYPE zde_status_joh
+                        RETURNING VALUE(rv_valid)       TYPE abap_bool,
+      delete_work_order IMPORTING iv_work_order_id_crud TYPE zde_work_order_id_joh
+                        RETURNING VALUE(rv_valid)       TYPE abap_bool,
+      read_work_order IMPORTING iv_work_order_id_crud TYPE zde_work_order_id_joh
+                      RETURNING VALUE(rv_valid)       TYPE ztwork_order_joh.
 
 
   PROTECTED SECTION.
+
   PRIVATE SECTION.
 
     METHODS: update_workorder_hist IMPORTING iv_work_order_id_hist TYPE zde_work_order_id_joh
@@ -32,6 +35,7 @@ ENDCLASS.
 
 CLASS zclwork_order_crud_handler_joh IMPLEMENTATION.
 
+******************************************************************************************
   METHOD create_work_order.     "OPERACION DE CREATE EN ztwork_order_joh
 
     DATA(lo_workorder_validator) = NEW zcl_workorder_validator_joh(  ).                                     "INSTANCIA VALIDACION DE CAMPOS A SER INSERTADOS
@@ -50,7 +54,6 @@ CLASS zclwork_order_crud_handler_joh IMPLEMENTATION.
 
       lv_max_wo = lv_max_wo + 1.
 
-
       INSERT ztwork_order_joh FROM TABLE @( VALUE #( ( work_order_id = lv_max_wo                      "INSERTA LOS VALORES VALIDADOS
                                                        customer_id   = iv_customer_id_crud
                                                        technician_id = iv_technician_id_crud
@@ -65,7 +68,6 @@ CLASS zclwork_order_crud_handler_joh IMPLEMENTATION.
         rv_valid_crud = abap_false.
         RETURN.
       ENDIF.
-
     ELSE.
       rv_valid_crud = abap_false.
       RETURN.
@@ -74,8 +76,8 @@ CLASS zclwork_order_crud_handler_joh IMPLEMENTATION.
   ENDMETHOD.
 
 
-
-  METHOD validate_update_order.             "OPERACION DE UPDATE EN ztwork_order_joh
+******************************************************************************************
+  METHOD update_work_order.             "OPERACION DE UPDATE EN ztwork_order_joh
 
     DATA(lo_workorder_validator) = NEW zcl_workorder_validator_joh(  ).
 
@@ -126,6 +128,8 @@ CLASS zclwork_order_crud_handler_joh IMPLEMENTATION.
 
   ENDMETHOD.
 
+
+******************************************************************************************
   METHOD update_workorder_hist.         "INSERTA UN REGISTRO EN ztworkorder_hist, POR CADA MODIFICACION REALIZADA EN ztwork_order_joh
 
     SELECT FROM ztworkorder_hist        "VERIFICA EL HIST MAXIMO, PARA NO REPETIR history_id
@@ -159,6 +163,48 @@ CLASS zclwork_order_crud_handler_joh IMPLEMENTATION.
       RETURN.
     ENDIF.
 
+  ENDMETHOD.
+
+
+******************************************************************************************
+  METHOD delete_work_order.
+
+    DATA(lo_workorder_validator) = NEW zcl_workorder_validator_joh(  ).
+
+    DATA(rv_validate_delete_order) = lo_workorder_validator->validate_delete_order( iv_work_order_id = iv_work_order_id_crud  ).
+
+    IF rv_validate_delete_order EQ abap_true.
+
+      DELETE FROM ztwork_order_joh WHERE work_order_id EQ @iv_work_order_id_crud.
+
+      IF sy-subrc EQ 0.
+        rv_valid = abap_true.
+      ELSE.
+        rv_valid = abap_false.
+        RETURN.
+      ENDIF.
+
+    ELSE.
+      rv_valid = abap_false.
+      RETURN.
+    ENDIF.
+
+  ENDMETHOD.
+
+******************************************************************************************
+  METHOD read_work_order.
+
+    SELECT SINGLE FROM ztwork_order_joh
+    FIELDS *
+    WHERE work_order_id EQ @iv_work_order_id_crud
+    INTO @DATA(ls_read_work_order).
+
+    IF sy-subrc EQ 0.
+      rv_valid = ls_read_work_order.
+    ELSE.
+      CLEAR rv_valid.
+      RETURN.
+    ENDIF.
 
   ENDMETHOD.
 

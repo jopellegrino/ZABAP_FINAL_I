@@ -3,9 +3,9 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <VSEOCLASS>
-    <CLSNAME>ZCL_FILL_TABLE_JOH</CLSNAME>
+    <CLSNAME>ZCL_WORK_ORDER_CRUD_TEST_JOH</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>Insert de datos a BBDD para probar</DESCRIPT>
+    <DESCRIPT>Metodos de test</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>

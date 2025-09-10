@@ -128,19 +128,90 @@ CLASS zcl_fill_table_joh IMPLEMENTATION.
                                                     specialty      = 'Automat. industrial' )  ) ).
 
 
-    "VALORES DE PRUEBA """"CREATE ORDER""""
+*   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-    DATA ls_ztwork_order_joh TYPE ztwork_order_joh.
+    "LLENAR DE DATOS ztwork_order_joh
+    DELETE FROM ztwork_order_joh.
 
-*    ls_ztwork_order_joh-work_order_id
-*    ls_ztwork_order_joh-customer_id =
-*    ls_ztwork_order_joh-technician_id
-*    ls_ztwork_order_joh-creation_date
-*    ls_ztwork_order_joh-status
-*    ls_ztwork_order_joh-priority
-*    ls_ztwork_order_joh-description
+    MODIFY ztwork_order_joh FROM TABLE @(  VALUE #( ( work_order_id  = '000001'
+                                                      customer_id    = 'CUST0001'
+                                                      technician_id  = 'TECH0001'
+                                                      creation_date  = '20250901'
+                                                      status         = 'PE'
+                                                      priority       = 'H'
+                                                      description    = 'Instalación de router' )
 
+                                                     ( work_order_id  = '000002'
+                                                       customer_id    = 'CUST0002'
+                                                       technician_id  = 'TECH0002'
+                                                       creation_date  = '20250902'
+                                                       status         = 'PE'
+                                                       priority       = 'M'
+                                                       description    = 'Revisión de cableado'     )
 
+                                                     ( work_order_id  = '000003'
+                                                       customer_id    = 'CUST0003'
+                                                       technician_id  = 'TECH0003'
+                                                       creation_date  = '20250903'
+                                                       status         = 'PE'
+                                                       priority       = 'L'
+                                                       description    = 'Mantenimiento preventivo' )
+
+                                                     ( work_order_id  = '000004'
+                                                       customer_id    = 'CUST0004'
+                                                       technician_id  = 'TECH0004'
+                                                       creation_date  = '20250904'
+                                                       status         = 'CO'
+                                                       priority       = 'M'
+                                                       description    = 'Cambio de antena' )
+
+                                                     ( work_order_id  = '000005'
+                                                       customer_id    = 'CUST0005'
+                                                       technician_id  = 'TECH0005'
+                                                       creation_date  = '20250905'
+                                                       status         = 'PE'
+                                                       priority       = 'H'
+                                                       description    = 'Configuración de red' )
+
+                                                     ( work_order_id  = '000006'
+                                                       customer_id    = 'CUST0006'
+                                                       technician_id  = 'TECH0001'
+                                                       creation_date  = '20250906'
+                                                       status         = 'CL'
+                                                       priority       = 'L'
+                                                       description    = 'Instalación de fibra óptica'      )
+
+                                                     ( work_order_id  = '000007'
+                                                       customer_id    = 'CUST0007'
+                                                       technician_id  = 'TECH0002'
+                                                       creation_date  = '20250907'
+                                                       status         = 'PE'
+                                                       priority       = 'M'
+                                                       description    = 'Reemplazo de módem'        )
+
+                                                     ( work_order_id  = '000008'
+                                                       customer_id    = 'CUST0008'
+                                                       technician_id  = 'TECH0003'
+                                                       creation_date  = '20250908'
+                                                       status         = 'PE'
+                                                       priority       = 'H'
+                                                       description    = 'Diagnóstico de señal'      )
+
+                                                     ( work_order_id  = '000009'
+                                                       customer_id    = 'CUST0009'
+                                                       technician_id  = 'TECH0004'
+                                                       creation_date  = '20250909'
+                                                       status         = 'AP'
+                                                       priority       = 'M'
+                                                       description    = 'Actualización de firmware'  )
+
+                                                     ( work_order_id  = '000010'
+                                                       customer_id    = 'CUST0010'
+                                                       technician_id  = 'TECH0005'
+                                                       creation_date  = '20250910'
+                                                       status         = 'PE'
+                                                       priority       = 'L'
+                                                       description    = 'Revisión de interferencias' ) ) ).
 
 
   ENDMETHOD.

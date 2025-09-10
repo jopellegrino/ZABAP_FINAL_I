@@ -68,22 +68,24 @@ CLASS zcl_test_values IMPLEMENTATION.
 *    ELSE.
 *      out->write( 'VALOR INCORRECTO' ).
 *    ENDIF.
-    ls_ztwork_order_joh-work_order_id = '0000000008'.
-    ls_ztwork_order_joh-status = 'AP'.
+*    ls_ztwork_order_joh-work_order_id = '0000000004'.
+*
+*
+*
+*    DATA(rv_update) = lo_work_order_crud_handler->read_work_order( iv_work_order_id_crud = ls_ztwork_order_joh-work_order_id ).
+*
+*
+*
+*    IF rv_update IS INITIAL.
+*      out->write( 'EL VALOR NO EXISTE EN LA TABLA' ).
+*    ELSE.
+*      out->write( rv_update ).
+*    ENDIF.
 
+    DATA(lo_wo_crud_test) = NEW zcl_work_order_crud_test_joh(  ).
 
-    DATA(rv_update) = lo_work_order_crud_handler->validate_update_order(  iv_work_order_id_crud = ls_ztwork_order_joh-work_order_id
-                                                                          iv_status_crud        = ls_ztwork_order_joh-status
-                                                                              ).
-
-
-
-    IF rv_update EQ abap_true.
-      out->write( 'VALOR CORRECTO' ).
-    ELSE.
-      out->write( 'VALOR INCORRECTO' ).
-    ENDIF.
-
+    lo_wo_crud_test->test_create_work_order(  ).
+    out->write( lo_wo_crud_test->test_update_work_order(  ) ).
 
   ENDMETHOD.
 
